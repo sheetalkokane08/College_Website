@@ -19,9 +19,9 @@ class DatabaseSeeder extends Seeder
         // Create admin user
         User::factory()->create([
             'name' => 'Admin User',
-            'email' => 'admin@example.com',
+            'email' => 'admin@edu.com',
             'role' => 'admin',
-            'password' => bcrypt('password'),
+            'password' => bcrypt('87654321'),
         ]);
 
         // Create departments
@@ -43,9 +43,28 @@ class DatabaseSeeder extends Seeder
                 'name' => $fac->name,
                 'email' => $fac->email,
                 'role' => 'faculty',
-                'password' => bcrypt('password'),
+                'password' => bcrypt('12345678'),
             ]);
         }
+
+        // ensure a known fixed faculty account is available for login
+        $fixedFaculty = Faculty::firstOrCreate(
+            ['email' => 'fact@edu.com'],
+            [
+                'name' => 'Fact Faculty',
+                'phone' => '9876543210',
+                'department_id' => $departments->first()->id,
+            ]
+        );
+
+        \App\Models\User::firstOrCreate(
+            ['email' => 'fact@edu.com'],
+            [
+                'name' => 'Fact Faculty',
+                'role' => 'faculty',
+                'password' => bcrypt('12345678'),
+            ]
+        );
 
         // sample notices for first two faculty members
         $sampleFacs = Faculty::take(2)->get();
@@ -166,6 +185,7 @@ class DatabaseSeeder extends Seeder
                         'student_id' => $student->id,
                         'course_id' => $course->id,
                         'semester' => 'Fall 2024',
+                        'enrolled_at' => now(),
                     ]);
                 } catch (\Exception $e) {
                     // Skip duplicate enrollments

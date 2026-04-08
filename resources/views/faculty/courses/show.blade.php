@@ -60,7 +60,7 @@
                                     <td>{{ $student->phone ?? 'N/A' }}</td>
                                     <td>
                                         @if($student->pivot->enrolled_at)
-                                            {{ $student->pivot->enrolled_at->format('M d, Y') }}
+                                            {{ is_string($student->pivot->enrolled_at) ? \Carbon\Carbon::parse($student->pivot->enrolled_at)->format('M d, Y') : $student->pivot->enrolled_at->format('M d, Y') }}
                                         @else
                                             N/A
                                         @endif

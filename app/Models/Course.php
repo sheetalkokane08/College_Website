@@ -50,6 +50,7 @@ class Course extends Model
     {
         return $this->belongsToMany(User::class, 'enrollments', 'course_id', 'student_id')
             ->withPivot('semester', 'enrolled_at')
+            ->withCasts(['enrolled_at' => 'datetime'])
             ->withTimestamps();
     }
 
