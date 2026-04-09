@@ -103,5 +103,7 @@ class User extends Authenticatable
     {
         return $this->hasOne(Faculty::class, 'email', 'email');
     }
+    
+    
 
 }
