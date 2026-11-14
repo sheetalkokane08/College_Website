@@ -22,19 +22,7 @@ services:
         value: file
       - key: DB_CONNECTION
         value: pgsql
-      - key: DB_HOST
-        fromDatabase: { name: college_db, property: host }
-      - key: DB_PORT
-        fromDatabase: { name: college_db, property: port }
-      - key: DB_DATABASE
-        fromDatabase: { name: college_db, property: database }
-      - key: DB_USERNAME
-        fromDatabase: { name: college_db, property: user }
-      - key: DB_PASSWORD
-        fromDatabase: { name: college_db, property: password }
+      - key: DATABASE_URL
+        sync: false
       - key: SEED_DB
         value: "true"   # set to "false" after the first successful deploy
-
-databases:
-  - name: college_db
-    plan: free
