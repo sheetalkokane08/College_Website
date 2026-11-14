@@ -1,1 +1,1 @@
-import './bootstrap';
+// Add frontend behavior here when needed.
