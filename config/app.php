@@ -72,9 +72,9 @@ return [
     | Application Locale Configuration
     |--------------------------------------------------------------------------
     |
-    | The application locale determines the default locale that will be used
-    | by Laravel's translation / localization methods. This option can be
-    | set to any locale for which you plan to have translation strings.
+    | This locale determines the default locale that will be used by Laravel's
+    | translation / localization methods. This option can be set to any locale
+    | for which you plan to have translation strings.
     |
     */
 
@@ -82,7 +82,7 @@ return [
 
     'fallback_locale' => env('APP_FALLBACK_LOCALE', 'en'),
 
-    'faker_locale' => env('APP_FAKER_LOCALE', 'en_US'),
+    'faker_locale' => env('APP_FALLBACK_LOCALE', 'en_US'),
 
     /*
     |--------------------------------------------------------------------------
@@ -101,7 +101,7 @@ return [
 
     'previous_keys' => [
         ...array_filter(
-            explode(',', (string) env('APP_PREVIOUS_KEYS', '')),
+            explode(',', (string) env('APP_PREVIOUS_KEYS', ''))
         ),
     ],
 
@@ -114,7 +114,7 @@ return [
     | manage Laravel's "maintenance mode" status. The "cache" driver will
     | allow maintenance mode to be controlled across multiple machines.
     |
-    | Supported drivers: "file", "cache"
+    | Supported drivers: "file", "cache", "array"
     |
     */
 
